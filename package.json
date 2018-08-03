@@ -1,0 +1,19 @@
+{
+  "name": "astm-js",
+  "version": "1.0.0",
+  "description": "ASTM python port",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Red Tics Neuquen",
+  "license": "ISC",
+  "dependencies": {
+    "mocha": "3.1.2",
+    "mssql": "3.3.0",
+    "serialport": "4.0.3",
+    "seriate": "0.8.0",
+    "sqlite3": "3.1.8",
+    "winston": "2.3.0"
+  }
+}
