@@ -263,9 +263,8 @@ function sendData(){
         if (retryCounter > 6){
             closeClientSession();
             if (lastSendData !== token.ENQ){
-                // Remove last protocol to send to prevent future problems with 
-                // the same protocol
-                db.removeLastProtocolSent();
+               // pone en fail le protocolo si tuvo algún problema
+                db.setFailLastProtocolSent();
             }
             return;
         }
@@ -284,6 +283,7 @@ function sendData(){
                 openClientSession();
             }
             else{
+                // Borra el protocolo si lo mando ok
                 db.removeLastProtocolSent();
             }
             

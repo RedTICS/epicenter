@@ -443,7 +443,7 @@ function getProtocolByNro(nroProtocolo){
 
 function hasProtocolsToSend(){
     return sql.execute( {  
-        query: "SELECT count(*) as total FROM LAB_TempProtocoloEnvio WHERE equipo = @equipo",
+        query: "SELECT count(*) as total FROM LAB_TempProtocoloEnvio WHERE equipo = @equipo and fail = 0",
         params: {
             equipo: {
                 type: sql.NVARCHAR,
@@ -470,8 +470,19 @@ function removeLastProtocolSent(){
     getNextProtocolToSend().then( function( results ) {
         for (var i = 0; i < results.length; i++) { // Always only 1 iteration
             var protocol = results[i]; 
-            // removeProtocol(protocol.idTempProtocoloEnvio);
+            removeProtocol(protocol.idTempProtocoloEnvio);
             // hacemos esto de forma temporal para ver si actualiza el protocolo que no se envía en vez de borrarlo
+            // failProtocol(protocol.idTempProtocoloEnvio);
+        }
+        }, function( err ) {
+            logger.error( "Something bad happened:", err );
+        } );
+}
+
+function setFailLastProtocolSent() {
+    getNextProtocolToSend().then( function( results ) {
+        for (var i = 0; i < results.length; i++) { // Always only 1 iteration
+            var protocol = results[i]; 
             failProtocol(protocol.idTempProtocoloEnvio);
         }
         }, function( err ) {
@@ -526,6 +537,7 @@ module.exports = {
     hasProtocolsToSend: hasProtocolsToSend,
     getNextProtocolToSend: getNextProtocolToSend,
     removeProtocol: removeProtocol,
+    setFailLastProtocolSent: setFailLastProtocolSent,
     failProtocol: failProtocol,
     removeLastProtocolSent: removeLastProtocolSent,
     saveResultGND : saveResultGND
