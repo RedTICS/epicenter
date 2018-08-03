@@ -493,7 +493,7 @@ function removeProtocol(idTempProtocolo){
 
 function failProtocol(idTempProtocolo){
     return sql.execute( {  
-        query: "UPDATE FROM LAB_TempProtocoloEnvio SET fail=1 WHERE idTempProtocoloEnvio = @_id",
+        query: "UPDATE LAB_TempProtocoloEnvio SET fail=1 WHERE idTempProtocoloEnvio = @_id",
         params: {
             _id: {
                 type: sql.INT,
