@@ -456,7 +456,7 @@ function hasProtocolsToSend(){
 
 function getNextProtocolToSend(){
     return sql.execute( {  
-        query: "SELECT TOP 1 * FROM LAB_TempProtocoloEnvio WHERE equipo = @equipo",
+        query: "SELECT TOP 1 * FROM LAB_TempProtocoloEnvio WHERE equipo = @equipo and fail = 0",
         params: {
             equipo: {
                 type: sql.NVARCHAR,
