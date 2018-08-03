@@ -261,6 +261,7 @@ function sendMessage(){
 function sendData(){
     if (!lastSendOk){
         if (retryCounter > 6){
+            logger.error("Luego de probar 6 veces.... y falla");
             closeClientSession();
             if (lastSendData !== token.ENQ){
                // pone en fail le protocolo si tuvo algún problema
@@ -269,6 +270,7 @@ function sendData(){
             return;
         }
         else{
+            logger.error("Dio fallo....contando: ", retryCounter);
             retryCounter = retryCounter + 1;
         }
     }
@@ -284,6 +286,7 @@ function sendData(){
             }
             else{
                 // Borra el protocolo si lo mando ok
+                logger.error("Va a borrar el protocolo de la tabla porque pasó ok");
                 db.removeLastProtocolSent();
             }
             
