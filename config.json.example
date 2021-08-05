@@ -1,0 +1,17 @@
+{
+    "logLevel":"debug",
+    
+    "analyzer":"Bactec",
+    "dbServer": "",
+    "dbUser": "",
+    "dbPassword": "",
+    "dbDatabase": "",
+    
+    "test": {
+        "analyzer":"Bactec",
+        "dbServer": "",
+        "dbUser": "",
+        "dbPassword": "",
+        "dbDatabase": ""
+    }
+}
